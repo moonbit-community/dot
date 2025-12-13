@@ -37,23 +37,18 @@ test "dot: quickstart" {
 
 ## Quickstart (Mermaid)
 
-```mbt
+```mbt check
 ///|
-test "dot: quickstart (mermaid)" {
+test "dot: quickstart (mermaid)" (it : @test.Test){
   let builder = @dot.DotBuilder::new()
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
   ..add_edge(src="a", dst="b", label="→")
   let got = builder.to_mermaid()
-  let expected = "flowchart LR\n" +
-    "%% graph: Marshal\n" +
-    "\n" +
-    "  a[\"Start\"]\n" +
-    "  b[\"End\"]\n" +
-    "\n" +
-    "  a -->|→| b\n"
-  assert_eq(got, expected)
+  it.write(got)
+  it.snapshot(filename="\{it.name()}.mmd")// for debugging
+
 }
 ```
 
@@ -91,4 +86,3 @@ test "dot: direction and styling (mermaid)" {
   assert_eq(got, expected)
 }
 ```
-
