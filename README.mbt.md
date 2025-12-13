@@ -1,4 +1,4 @@
-# `bobzhang/unmarshal/dot`
+# `bobzhang/dot`
 
 Small graph builder that can render either:
 
@@ -8,7 +8,7 @@ Small graph builder that can render either:
 ## Install
 
 ```bash
-moon add bobzhang/unmarshal/dot
+moon add bobzhang/dot
 ```
 
 ## Quickstart (DOT)
@@ -39,7 +39,7 @@ test "dot: quickstart" {
 
 ```mbt check
 ///|
-test "dot: quickstart (mermaid)" (it : @test.Test){
+test "quickstart-mermaid" (it : @test.Test){
   let builder = @dot.DotBuilder::new()
   builder
   ..add_node(id="a", label="Start")
@@ -51,6 +51,10 @@ test "dot: quickstart (mermaid)" (it : @test.Test){
 
 }
 ```
+It is rendered as follows:
+
+[quickstart](./__snapshot__/quickstart-mermaid.mmd)
+
 
 ## Direction and styling
 
