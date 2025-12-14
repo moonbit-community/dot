@@ -1,9 +1,10 @@
 {
-  "name": "bobzhang/dot",
-  "version": "0.2.4",
+  "name": "bobzhang/flowgraph",
+  "version": "0.1.0",
   "readme": "README.md",
   "repository": "https://github.com/moonbit-community/dot",
   "license": "Apache-2.0",
   "keywords": [],
-  "description": ""
+  "description": "A lightweight MoonBit library for building directed graphs and exporting to Graphviz DOT or Mermaid flowcharts.",
+  "warn-list": "+test_unqualified_package"
 }

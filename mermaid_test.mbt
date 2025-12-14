@@ -3,7 +3,7 @@
 
 ///|
 test "linear chain graph (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="Middle")
@@ -17,7 +17,7 @@ test "linear chain graph (mermaid)" (it : @test.Test) {
 
 ///|
 test "custom graph direction (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::with_config(graph_name="Vertical", rankdir="TB")
+  let builder = @flowgraph.DotBuilder::with_config(graph_name="Vertical", rankdir="TB")
   builder
   ..add_node(id="top", label="Top")
   ..add_node(id="middle", label="Middle")
@@ -31,7 +31,7 @@ test "custom graph direction (mermaid)" (it : @test.Test) {
 
 ///|
 test "styled nodes with shapes and colors (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_styled_node(id="start", label="Start", shape="circle", color="green")
   ..add_styled_node(
@@ -57,7 +57,7 @@ test "styled nodes with shapes and colors (mermaid)" (it : @test.Test) {
 
 ///|
 test "styled edges with different styles (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="a", label="Node A")
   ..add_node(id="b", label="Node B")
@@ -90,7 +90,7 @@ test "styled edges with different styles (mermaid)" (it : @test.Test) {
 
 ///|
 test "bidirectional edges (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="client", label="Client")
   ..add_node(id="server", label="Server")
@@ -105,7 +105,7 @@ test "bidirectional edges (mermaid)" (it : @test.Test) {
 
 ///|
 test "subgraph clusters (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="web1", label="Web1")
   ..add_node(id="web2", label="Web2")
@@ -125,7 +125,7 @@ test "subgraph clusters (mermaid)" (it : @test.Test) {
 
 ///|
 test "special characters in labels (mermaid)" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="n1", label="Label with \"quotes\"")
   ..add_node(id="n2", label="Label with <brackets>")

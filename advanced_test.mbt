@@ -4,7 +4,7 @@
 ///|
 /// Test custom graph configuration
 test "custom graph direction" (it : @test.Test) {
-  let builder = DotBuilder::with_config(graph_name="Vertical", rankdir="TB")
+  let builder = @flowgraph.DotBuilder::with_config(graph_name="Vertical", rankdir="TB")
   builder
   ..add_node(id="top", label="Top")
   ..add_node(id="middle", label="Middle")
@@ -19,7 +19,7 @@ test "custom graph direction" (it : @test.Test) {
 ///|
 /// Test styled nodes
 test "styled nodes with shapes and colors" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_styled_node(id="start", label="Start", shape="circle", color="green")
   ..add_styled_node(
@@ -46,7 +46,7 @@ test "styled nodes with shapes and colors" (it : @test.Test) {
 ///|
 /// Test styled edges
 test "styled edges with different styles" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="a", label="Node A")
   ..add_node(id="b", label="Node B")
@@ -80,7 +80,7 @@ test "styled edges with different styles" (it : @test.Test) {
 ///|
 /// Test bidirectional edges
 test "bidirectional edges" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="client", label="Client")
   ..add_node(id="server", label="Server")
@@ -96,7 +96,7 @@ test "bidirectional edges" (it : @test.Test) {
 ///|
 /// Test subgraphs (clusters)
 test "subgraph clusters" (it : @test.Test) {
-  let builder = DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="web1", label="Web1")
   ..add_node(id="web2", label="Web2")

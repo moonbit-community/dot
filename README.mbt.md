@@ -25,7 +25,7 @@ moon add bobzhang/dot
 ```mbt check
 ///|
 test "dot: quickstart" {
-  let builder = @dot.DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
@@ -51,7 +51,7 @@ test "dot: quickstart" {
 ```mbt check
 ///|
 test "quickstart-mermaid" (it : @test.Test) {
-  let builder = @dot.DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
@@ -86,7 +86,7 @@ Control graph direction and add custom styling to nodes and edges:
 ```mbt
 ///|
 test "styled graph example" {
-  let builder = @dot.DotBuilder::with_config(
+  let builder = @flowgraph.DotBuilder::with_config(
     graph_name="Workflow",
     rankdir="TB",  // Top to Bottom
   )
@@ -110,7 +110,7 @@ test "styled graph example" {
 ```mbt
 ///|
 test "bidirectional example" {
-  let builder = @dot.DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="client", label="Client")
   ..add_node(id="server", label="Server")
@@ -125,7 +125,7 @@ Group related nodes into visual clusters:
 ```mbt
 ///|
 test "subgraph example" {
-  let builder = @dot.DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="web1", label="Web Server 1")
   ..add_node(id="web2", label="Web Server 2")
@@ -145,7 +145,7 @@ Generate unique node identifiers automatically:
 ```mbt
 ///|
 test "auto-generated ids" {
-  let builder = @dot.DotBuilder::new()
+  let builder = @flowgraph.DotBuilder::new()
   let id1 = builder.fresh_id()  // "n0"
   let id2 = builder.fresh_id()  // "n1"
   let id3 = builder.fresh_id()  // "n2"
