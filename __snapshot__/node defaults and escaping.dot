@@ -1,0 +1,9 @@
+digraph Marshal {
+  rankdir=LR;
+  node [shape=ellipse, style=filled];
+
+  n1 [label="back\\slash\rcr"];
+  n2 [label="plain"];
+
+  n1 -> n2 [color="red", label="color-only"];
+}

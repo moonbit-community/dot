@@ -111,3 +111,20 @@ test "special characters in labels (mermaid)" (it : @test.Test) {
   it.write(mermaid)
   it.snapshot(filename=it.name() + ".mmd")
 }
+
+///|
+test "coverage branches (mermaid)" (it : @test.Test) {
+  let builder = @flowgraph.DotBuilder::with_config(
+    graph_name="Coverage",
+    rankdir="BT",
+  )
+  builder.set_node_shape("ellipse")
+  let label = "has[" + "\r" + "cr"
+  builder
+  ..add_node(id="a", label~)
+  ..add_node(id="b", label="target")
+  ..add_edge(src="a", dst="b", label="", style="bold", color="#ff00ff")
+  let mermaid = builder.to_mermaid()
+  it.write(mermaid)
+  it.snapshot(filename=it.name() + ".mmd")
+}

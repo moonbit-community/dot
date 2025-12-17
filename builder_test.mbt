@@ -198,3 +198,19 @@ test "unicode in labels" (it : @test.Test) {
   it.write(dot)
   it.snapshot(filename=it.name() + ".dot")
 }
+
+///|
+/// Test 13: Default node config and escaping edge cases
+test "node defaults and escaping" (it : @test.Test) {
+  let builder = @flowgraph.DotBuilder::new()
+  builder.set_node_shape("ellipse")
+  builder.set_node_style("filled")
+  let label = "back" + "\\" + "slash" + "\r" + "cr"
+  builder
+  ..add_node(id="n1", label~)
+  ..add_node(id="n2", label="plain")
+  ..add_edge(src="n1", dst="n2", label="color-only", color="red")
+  let dot = builder.to_dot()
+  it.write(dot)
+  it.snapshot(filename=it.name() + ".dot")
+}
