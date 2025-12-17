@@ -102,20 +102,8 @@ pub fn DotBuilder::add_node(
   self : DotBuilder,
   id~ : String,
   label~ : String,
-) -> Unit {
-  self.nodes.push({ id, label, shape: "", color: "" })
-}
-
-///|
-/// Add a node with custom shape and optional color
-/// shape: "box", "circle", "ellipse", "diamond", etc.
-/// color: any HTML color name or hex code (empty string for no color)
-pub fn DotBuilder::add_styled_node(
-  self : DotBuilder,
-  id~ : String,
-  label~ : String,
-  shape~ : String,
-  color~ : String,
+  shape? : String = "",
+  color? : String = "",
 ) -> Unit {
   self.nodes.push({ id, label, shape, color })
 }
@@ -138,28 +126,8 @@ pub fn DotBuilder::add_edge(
   src~ : String,
   dst~ : String,
   label~ : String,
-) -> Unit {
-  self.edges.push({
-    src,
-    dst,
-    label,
-    style: "",
-    color: "",
-    bidirectional: false,
-  })
-}
-
-///|
-/// Add a styled edge with custom style and color
-/// style: "solid", "dashed", "dotted", "bold"
-/// color: any HTML color name or hex code
-pub fn DotBuilder::add_styled_edge(
-  self : DotBuilder,
-  src~ : String,
-  dst~ : String,
-  label~ : String,
-  style~ : String,
-  color~ : String,
+  style? : String = "",
+  color? : String = "",
 ) -> Unit {
   self.edges.push({ src, dst, label, style, color, bidirectional: false })
 }
@@ -293,10 +261,12 @@ fn render_dot_node(node : DotNode) -> String {
   if node.shape == "" && node.color == "" {
     "  \{node.id} [label=\"\{escaped}\"];"
   } else {
-    let attrs = if node.color == "" {
-      "label=\"\{escaped}\", shape=\{node.shape}"
-    } else {
-      "label=\"\{escaped}\", shape=\{node.shape}, color=\"\{node.color}\", style=filled"
+    let mut attrs = "label=\"\{escaped}\""
+    if node.shape != "" {
+      attrs += ", shape=\{node.shape}"
+    }
+    if node.color != "" {
+      attrs += ", color=\"\{node.color}\", style=filled"
     }
     "  \{node.id} [\{attrs}];"
   }
@@ -312,13 +282,22 @@ fn render_dot_edge(edge : DotEdge) -> String {
       "  \{edge.src} -> \{edge.dst} [label=\"\{escaped}\", dir=both];"
     }
   } else if edge.style != "" || edge.color != "" {
-    let mut attrs = "style=\{edge.style}"
+    let mut attrs = ""
+    if edge.style != "" {
+      attrs += "style=\{edge.style}"
+    }
     if edge.color != "" {
-      attrs += ", color=\"\{edge.color}\""
+      if attrs != "" {
+        attrs += ", "
+      }
+      attrs += "color=\"\{edge.color}\""
     }
     if edge.label != "" {
       let escaped = escape_dot_label(edge.label)
-      attrs += ", label=\"\{escaped}\""
+      if attrs != "" {
+        attrs += ", "
+      }
+      attrs += "label=\"\{escaped}\""
     }
     "  \{edge.src} -> \{edge.dst} [\{attrs}];"
   } else if edge.label == "" {

@@ -30,19 +30,21 @@ test "dot: quickstart" {
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
   ..add_edge(src="a", dst="b", label="→")
-  inspect(builder.to_dot(), content=(
-    #|digraph Marshal {
-    #|  rankdir=LR;
-    #|  node [shape=box, style=rounded];
-    #|
-    #|  a [label="Start"];
-    #|  b [label="End"];
-    #|
-    #|  a -> b [label="→"];
-    #|}
-    #|
-  ))
-  
+  inspect(
+    builder.to_dot(),
+    content=(
+      #|digraph Marshal {
+      #|  rankdir=LR;
+      #|  node [shape=box, style=rounded];
+      #|
+      #|  a [label="Start"];
+      #|  b [label="End"];
+      #|
+      #|  a -> b [label="→"];
+      #|}
+      #|
+    ),
+  )
 }
 ```
 
@@ -88,14 +90,26 @@ Control graph direction and add custom styling to nodes and edges:
 test "styled graph example" {
   let builder = @flowgraph.DotBuilder::with_config(
     graph_name="Workflow",
-    rankdir="TB",  // Top to Bottom
+    rankdir="TB", // Top to Bottom
   )
   builder
-  ..add_styled_node(id="start", label="Start", shape="circle", color="green")
-  ..add_styled_node(id="process", label="Process", shape="box", color="lightblue")
-  ..add_styled_node(id="end", label="End", shape="doublecircle", color="red")
-  ..add_styled_edge(src="start", dst="process", label="begin", style="solid", color="black")
-  ..add_styled_edge(src="process", dst="end", label="complete", style="dashed", color="blue")
+  ..add_node(id="start", label="Start", shape="circle", color="green")
+  ..add_node(id="process", label="Process", shape="box", color="lightblue")
+  ..add_node(id="end", label="End", shape="doublecircle", color="red")
+  ..add_edge(
+    src="start",
+    dst="process",
+    label="begin",
+    style="solid",
+    color="black",
+  )
+  ..add_edge(
+    src="process",
+    dst="end",
+    label="complete",
+    style="dashed",
+    color="blue",
+  )
 }
 ```
 
@@ -146,9 +160,9 @@ Generate unique node identifiers automatically:
 ///|
 test "auto-generated ids" {
   let builder = @flowgraph.DotBuilder::new()
-  let id1 = builder.fresh_id()  // "n0"
-  let id2 = builder.fresh_id()  // "n1"
-  let id3 = builder.fresh_id()  // "n2"
+  let id1 = builder.fresh_id() // "n0"
+  let id2 = builder.fresh_id() // "n1"
+  let id3 = builder.fresh_id() // "n2"
   builder
   ..add_node(id=id1, label="First")
   ..add_node(id=id2, label="Second")
@@ -167,14 +181,12 @@ test "auto-generated ids" {
 
 #### Node Methods
 
-- `add_node(id~, label~)` - Add a simple node
-- `add_styled_node(id~, label~, shape~, color~)` - Add a node with custom styling
+- `add_node(id~, label~, shape?, color?)` - Add a node (optionally with custom styling)
 - `fresh_id() -> String` - Generate a unique node ID
 
 #### Edge Methods
 
-- `add_edge(src~, dst~, label~)` - Add a directed edge
-- `add_styled_edge(src~, dst~, label~, style~, color~)` - Add an edge with custom styling
+- `add_edge(src~, dst~, label~, style?, color?)` - Add a directed edge (optionally with custom styling)
 - `add_bidirectional_edge(node1~, node2~, label~)` - Add a bidirectional edge
 
 #### Subgraph Methods

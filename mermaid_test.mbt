@@ -17,7 +17,10 @@ test "linear chain graph (mermaid)" (it : @test.Test) {
 
 ///|
 test "custom graph direction (mermaid)" (it : @test.Test) {
-  let builder = @flowgraph.DotBuilder::with_config(graph_name="Vertical", rankdir="TB")
+  let builder = @flowgraph.DotBuilder::with_config(
+    graph_name="Vertical",
+    rankdir="TB",
+  )
   builder
   ..add_node(id="top", label="Top")
   ..add_node(id="middle", label="Middle")
@@ -33,20 +36,10 @@ test "custom graph direction (mermaid)" (it : @test.Test) {
 test "styled nodes with shapes and colors (mermaid)" (it : @test.Test) {
   let builder = @flowgraph.DotBuilder::new()
   builder
-  ..add_styled_node(id="start", label="Start", shape="circle", color="green")
-  ..add_styled_node(
-    id="process",
-    label="Process",
-    shape="box",
-    color="lightblue",
-  )
-  ..add_styled_node(
-    id="decision",
-    label="Decision?",
-    shape="diamond",
-    color="yellow",
-  )
-  ..add_styled_node(id="end", label="End", shape="doublecircle", color="red")
+  ..add_node(id="start", label="Start", shape="circle", color="green")
+  ..add_node(id="process", label="Process", shape="box", color="lightblue")
+  ..add_node(id="decision", label="Decision?", shape="diamond", color="yellow")
+  ..add_node(id="end", label="End", shape="doublecircle", color="red")
   ..add_edge(src="start", dst="process", label="")
   ..add_edge(src="process", dst="decision", label="")
   ..add_edge(src="decision", dst="end", label="yes")
@@ -62,27 +55,9 @@ test "styled edges with different styles (mermaid)" (it : @test.Test) {
   ..add_node(id="a", label="Node A")
   ..add_node(id="b", label="Node B")
   ..add_node(id="c", label="Node C")
-  ..add_styled_edge(
-    src="a",
-    dst="b",
-    label="solid",
-    style="solid",
-    color="black",
-  )
-  ..add_styled_edge(
-    src="a",
-    dst="c",
-    label="dashed",
-    style="dashed",
-    color="blue",
-  )
-  ..add_styled_edge(
-    src="b",
-    dst="c",
-    label="dotted",
-    style="dotted",
-    color="red",
-  )
+  ..add_edge(src="a", dst="b", label="solid", style="solid", color="black")
+  ..add_edge(src="a", dst="c", label="dashed", style="dashed", color="blue")
+  ..add_edge(src="b", dst="c", label="dotted", style="dotted", color="red")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
   it.snapshot(filename=it.name() + ".mmd")
