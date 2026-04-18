@@ -85,7 +85,7 @@ test "quickstart-mermaid" (it : @test.Test) {
 
 Control graph direction and add custom styling to nodes and edges:
 
-```mbt nocheck
+```mbt check
 ///|
 test "styled graph example" {
   let builder = @flowgraph.DotBuilder::with_config(
@@ -96,7 +96,7 @@ test "styled graph example" {
   ..add_node(id="start", label="Start", shape="circle", color="green")
   ..add_node(id="process", label="Process", shape="box", color="lightblue")
   ..add_node(id="end", label="End", shape="doublecircle", color="red")
-  .add_edge(
+  ..add_edge(
     src="start",
     dst="process",
     label="begin",
@@ -121,7 +121,7 @@ test "styled graph example" {
 
 ### Bidirectional Edges
 
-```mbt nocheck
+```mbt check
 ///|
 test "bidirectional example" {
   let builder = @flowgraph.DotBuilder::new()
@@ -136,7 +136,7 @@ test "bidirectional example" {
 
 Group related nodes into visual clusters:
 
-```mbt nocheck
+```mbt check
 ///|
 test "subgraph example" {
   let builder = @flowgraph.DotBuilder::new()
@@ -156,7 +156,7 @@ test "subgraph example" {
 
 Generate unique node identifiers automatically:
 
-```mbt nocheck
+```mbt check
 ///|
 test "auto-generated ids" {
   let builder = @flowgraph.DotBuilder::new()
