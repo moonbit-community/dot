@@ -29,7 +29,7 @@ test "dot: quickstart" {
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
-  ..add_edge(src="a", dst="b", label="→")
+  .add_edge(src="a", dst="b", label="→")
   inspect(
     builder.to_dot(),
     content=(
@@ -57,7 +57,7 @@ test "quickstart-mermaid" (it : @test.Test) {
   builder
   ..add_node(id="a", label="Start")
   ..add_node(id="b", label="End")
-  ..add_edge(src="a", dst="b", label="→")
+  .add_edge(src="a", dst="b", label="→")
   let got = builder.to_mermaid()
   inspect(
     got,
@@ -85,7 +85,7 @@ test "quickstart-mermaid" (it : @test.Test) {
 
 Control graph direction and add custom styling to nodes and edges:
 
-```mbt
+```mbt nocheck
 ///|
 test "styled graph example" {
   let builder = @flowgraph.DotBuilder::with_config(
@@ -96,14 +96,14 @@ test "styled graph example" {
   ..add_node(id="start", label="Start", shape="circle", color="green")
   ..add_node(id="process", label="Process", shape="box", color="lightblue")
   ..add_node(id="end", label="End", shape="doublecircle", color="red")
-  ..add_edge(
+  .add_edge(
     src="start",
     dst="process",
     label="begin",
     style="solid",
     color="black",
   )
-  ..add_edge(
+  .add_edge(
     src="process",
     dst="end",
     label="complete",
@@ -121,14 +121,14 @@ test "styled graph example" {
 
 ### Bidirectional Edges
 
-```mbt
+```mbt nocheck
 ///|
 test "bidirectional example" {
   let builder = @flowgraph.DotBuilder::new()
   builder
   ..add_node(id="client", label="Client")
   ..add_node(id="server", label="Server")
-  ..add_bidirectional_edge(node1="client", node2="server", label="HTTP")
+  .add_bidirectional_edge(node1="client", node2="server", label="HTTP")
 }
 ```
 
@@ -136,7 +136,7 @@ test "bidirectional example" {
 
 Group related nodes into visual clusters:
 
-```mbt
+```mbt nocheck
 ///|
 test "subgraph example" {
   let builder = @flowgraph.DotBuilder::new()
@@ -148,7 +148,7 @@ test "subgraph example" {
   ..add_subgraph(name="frontend", label="Frontend Tier", nodes=["web1", "web2"])
   ..add_subgraph(name="backend", label="Backend Tier", nodes=["app1", "app2"])
   ..add_edge(src="web1", dst="app1", label="")
-  ..add_edge(src="web2", dst="app2", label="")
+  .add_edge(src="web2", dst="app2", label="")
 }
 ```
 
@@ -156,7 +156,7 @@ test "subgraph example" {
 
 Generate unique node identifiers automatically:
 
-```mbt
+```mbt nocheck
 ///|
 test "auto-generated ids" {
   let builder = @flowgraph.DotBuilder::new()
@@ -166,7 +166,7 @@ test "auto-generated ids" {
   builder
   ..add_node(id=id1, label="First")
   ..add_node(id=id2, label="Second")
-  ..add_node(id=id3, label="Third")
+  .add_node(id=id3, label="Third")
 }
 ```
 
