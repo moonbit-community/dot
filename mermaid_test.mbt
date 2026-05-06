@@ -12,7 +12,7 @@ test "linear chain graph (mermaid)" (it : @test.Test) {
   .add_edge(src="b", dst="c", label="→")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -29,7 +29,7 @@ test "custom graph direction (mermaid)" (it : @test.Test) {
   .add_edge(src="middle", dst="bottom", label="↓")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -45,7 +45,7 @@ test "styled nodes with shapes and colors (mermaid)" (it : @test.Test) {
   .add_edge(src="decision", dst="end", label="yes")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -60,7 +60,7 @@ test "styled edges with different styles (mermaid)" (it : @test.Test) {
   .add_edge(src="b", dst="c", label="dotted", style="dotted", color="red")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -75,7 +75,7 @@ test "bidirectional edges (mermaid)" (it : @test.Test) {
   .add_bidirectional_edge(node1="server", node2="database", label="")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -95,7 +95,7 @@ test "subgraph clusters (mermaid)" (it : @test.Test) {
   .add_edge(src="app2", dst="db", label="")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -109,7 +109,7 @@ test "special characters in labels (mermaid)" (it : @test.Test) {
   .add_edge(src="n2", dst="n3", label="label & symbols | pipes")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }
 
 ///|
@@ -126,5 +126,5 @@ test "coverage branches (mermaid)" (it : @test.Test) {
   .add_edge(src="a", dst="b", label="", style="bold", color="#ff00ff")
   let mermaid = builder.to_mermaid()
   it.write(mermaid)
-  it.snapshot(filename=it.name() + ".mmd")
+  it.snapshot(filename=snapshot_filename(it.name(), ".mmd"))
 }

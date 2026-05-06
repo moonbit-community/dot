@@ -13,7 +13,7 @@ test "linear chain graph" (it : @test.Test) {
   .add_edge(src="b", dst="c", label="→")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -32,7 +32,7 @@ test "binary tree graph" (it : @test.Test) {
   .add_edge(src="left", dst="lr", label="R")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -51,7 +51,7 @@ test "cyclic graph with self-loop" (it : @test.Test) {
   .add_edge(src="b", dst="b", label="self")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -66,7 +66,7 @@ test "star graph pattern" (it : @test.Test) {
   }
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -86,7 +86,7 @@ test "dependency dag" (it : @test.Test) {
   .add_edge(src="auth", dst="db", label="user lookup")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -95,7 +95,7 @@ test "empty graph" (it : @test.Test) {
   let builder = @flowgraph.DotBuilder::new()
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -110,7 +110,7 @@ test "special characters in labels" (it : @test.Test) {
   .add_edge(src="n2", dst="n3", label="label & symbols")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -126,7 +126,7 @@ test "multi-edge graph" (it : @test.Test) {
   .add_edge(src="bob", dst="alice", label="reply")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -140,7 +140,7 @@ test "fresh_id generates unique ids" (it : @test.Test) {
   it.write("id1: \{id1}\n")
   it.write("id2: \{id2}\n")
   it.write("id3: \{id3}\n")
-  it.snapshot(filename=it.name() + ".txt")
+  it.snapshot(filename=snapshot_filename(it.name(), ".txt"))
 }
 
 ///|
@@ -157,7 +157,7 @@ test "large graph with 100 nodes" (it : @test.Test) {
   }
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -179,7 +179,7 @@ test "complete graph k5" (it : @test.Test) {
   }
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -196,7 +196,7 @@ test "unicode in labels" (it : @test.Test) {
   .add_edge(src="arabic", dst="math", label="→")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -212,5 +212,5 @@ test "node defaults and escaping" (it : @test.Test) {
   .add_edge(src="n1", dst="n2", label="color-only", color="red")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
