@@ -16,7 +16,7 @@ test "custom graph direction" (it : @test.Test) {
   .add_edge(src="middle", dst="bottom", label="↓")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -33,7 +33,7 @@ test "styled nodes with shapes and colors" (it : @test.Test) {
   .add_edge(src="decision", dst="end", label="yes")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -49,7 +49,7 @@ test "styled edges with different styles" (it : @test.Test) {
   .add_edge(src="b", dst="c", label="dotted", style="dotted", color="red")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -65,7 +65,7 @@ test "bidirectional edges" (it : @test.Test) {
   .add_bidirectional_edge(node1="server", node2="database", label="")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }
 
 ///|
@@ -86,5 +86,5 @@ test "subgraph clusters" (it : @test.Test) {
   .add_edge(src="app2", dst="db", label="")
   let dot = builder.to_dot()
   it.write(dot)
-  it.snapshot(filename=it.name() + ".dot")
+  it.snapshot(filename=snapshot_filename(it.name(), ".dot"))
 }

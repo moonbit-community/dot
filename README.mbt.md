@@ -73,7 +73,7 @@ test "quickstart-mermaid" (it : @test.Test) {
     ),
   )
   it.write(got)
-  it.snapshot(filename="\{it.name()}.mmd")
+  it.snapshot(filename="quickstart-mermaid.mmd")
 }
 ```
 
