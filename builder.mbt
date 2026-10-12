@@ -34,7 +34,7 @@ struct DotBuilder {
   nodes : Array[DotNode]
   edges : Array[DotEdge]
   subgraphs : Array[DotSubgraph]
-  mut next_id : Int
+  mut next_id : Int32
   graph_name : String
   rankdir : String // "TB", "LR", "BT", "RL"
   mut default_node_shape : String // "box", "circle", "ellipse", "diamond", etc.
@@ -102,8 +102,8 @@ pub fn DotBuilder::add_node(
   self : DotBuilder,
   id~ : String,
   label~ : String,
-  shape? : String = "",
-  color? : String = "",
+  shape~ : String = "",
+  color~ : String = "",
 ) -> Unit {
   self.nodes.push({ id, label, shape, color, })
 }
@@ -126,8 +126,8 @@ pub fn DotBuilder::add_edge(
   src~ : String,
   dst~ : String,
   label~ : String,
-  style? : String = "",
-  color? : String = "",
+  style~ : String = "",
+  color~ : String = "",
 ) -> Unit {
   self.edges.push({ src, dst, label, style, color, bidirectional: false, })
 }
